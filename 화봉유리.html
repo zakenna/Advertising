@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화봉유리 - Premium Window Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(ellipse at top, #f0f8ff 0%, #e6f3ff 25%, #ddeeff 70%, #b8e0ff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #2c3e50;
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(74, 144, 226, 0.7);
+            border-radius: 50%;
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #4a90e2 0%, #2c5aa0 25%, #7b68ee 50%, #4a90e2 75%, #2c5aa0 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite, glow-pulse 2s ease-in-out infinite alternate;
+            letter-spacing: -2px;
+            text-shadow: 0 0 30px rgba(74, 144, 226, 0.2);
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes glow-pulse {
+            0% { filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.2)); }
+            100% { filter: drop-shadow(0 0 40px rgba(74, 144, 226, 0.4)); }
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: rgba(44, 62, 80, 0.8);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: rgba(44, 62, 80, 0.6);
+            font-style: italic;
+        }
+
+        .services-section {
+            margin: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #2c3e50, #4a90e2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            position: relative;
+            height: 400px;
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(74, 144, 226, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(74, 144, 226, 0.2);
+            border-color: rgba(74, 144, 226, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 60%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .service-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .service-content {
+            padding: 30px;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            color: rgba(44, 62, 80, 0.7);
+            line-height: 1.6;
+        }
+
+        /* AI 생성 스타일 이미지 배경 */
+        .service-sash {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="50" y="50" width="300" height="200" fill="%23ffffff" stroke="%23dee2e6" stroke-width="3"/><rect x="70" y="70" width="260" height="160" fill="%23e9ecef"/><path d="M180 70 L220 70 L220 230 L180 230 Z" fill="%23adb5bd"/><path d="M70 140 L330 140 L330 160 L70 160 Z" fill="%23adb5bd"/></svg>') center/cover;
+        }
+
+        .service-glass {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%23bbdefb;stop-opacity:0.9" /></linearGradient></defs><rect width="400" height="300" fill="%23f8f9fa"/><rect x="50" y="50" width="300" height="200" fill="url(%23glass)" stroke="%23546e7a" stroke-width="2"/><circle cx="120" cy="120" r="30" fill="%23ffffff" opacity="0.6"/><circle cx="280" cy="180" r="20" fill="%23ffffff" opacity="0.4"/></svg>') center/cover;
+        }
+
+        .service-screen {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="30" y="30" width="340" height="240" fill="%23263238" stroke="%23546e7a" stroke-width="2"/><pattern id="mesh" patternUnits="userSpaceOnUse" width="20" height="20"><rect width="20" height="20" fill="%23263238"/><rect width="18" height="18" x="1" y="1" fill="%23455a64" opacity="0.3"/></pattern><rect x="35" y="35" width="330" height="230" fill="url(%23mesh)"/></svg>') center/cover;
+        }
+
+        .service-security {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="40" y="40" width="320" height="220" fill="%23263238" stroke="%23546e7a" stroke-width="3"/><g stroke="%23fd79a8" stroke-width="4" fill="none"><line x1="60" y1="60" x2="380" y2="60"/><line x1="60" y1="90" x2="380" y2="90"/><line x1="60" y1="120" x2="380" y2="120"/><line x1="60" y1="150" x2="380" y2="150"/><line x1="60" y1="180" x2="380" y2="180"/><line x1="60" y1="210" x2="380" y2="210"/><line x1="60" y1="240" x2="380" y2="240"/></g></svg>') center/cover;
+        }
+
+        .service-silicone {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="50" y="50" width="300" height="200" fill="%23ffffff" stroke="%23dee2e6" stroke-width="2"/><path d="M70 200 Q 150 180 200 200 T 330 200" stroke="%23a29bfe" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M70 120 Q 100 100 150 120 T 250 120" stroke="%23a29bfe" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="80" cy="80" r="15" fill="%23a29bfe" opacity="0.7"/><circle cx="320" cy="100" r="12" fill="%23a29bfe" opacity="0.7"/></svg>') center/cover;
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(74, 144, 226, 0.1);
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(74, 144, 226, 0.05) 90deg, transparent 180deg, rgba(74, 144, 226, 0.05) 270deg, transparent 360deg);
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(10px);
+            border-color: rgba(74, 144, 226, 0.3);
+            box-shadow: 0 5px 20px rgba(74, 144, 226, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-right: 25px;
+            min-width: 60px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2c3e50;
+        }
+
+        .contact-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .phone-number {
+            color: #4a90e2;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .phone-number:hover {
+            color: #2c5aa0;
+            text-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .address-link {
+            color: #4a90e2;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .address-link:hover {
+            color: #2c5aa0;
+            text-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+            border-bottom-color: #4a90e2;
+        }
+
+        .cta-container {
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px 50px;
+            background: linear-gradient(135deg, #4a90e2 0%, #2c5aa0 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(74, 144, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(74, 144, 226, 0.4);
+        }
+
+        .cta-icon {
+            font-size: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            color: rgba(44, 62, 80, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-section {
+                padding: 40px 30px;
+            }
+            
+            .service-card {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header {
+                padding: 60px 0 40px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 10s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 12s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 14s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 16s;"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <h1 class="logo">ELITE WINDOWS</h1>
+            </div>
+            <p class="tagline">PREMIUM CRAFTSMANSHIP</p>
+            <p class="subtitle">Where Innovation Meets Perfection</p>
+        </header>
+
+        <section class="services-section">
+            <h2 class="section-title">전문 서비스</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image service-sash">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">프리미엄 샷시</h3>
+                        <p class="service-description">최고급 알루미늄과 PVC 소재로 제작된 내구성과 단열성을 겸비한 프리미엄 샷시 솔루션</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image service-glass">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">특수 유리</h3>
+                        <p class="service-description">단열, 방음, 안전유리 등 다양한 기능성 유리로 완벽한 주거환경을 제공합니다</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image service-screen">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">고급 방충망</h3>
+                        <p class="service-description">미세한 메쉬와 견고한 프레임으로 벌레 차단과 통풍을 동시에 해결하는 스마트 방충망</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image service-security">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">보안 방범창</h3>
+                        <p class="service-description">강화된 보안성과 세련된 디자인을 겸비한 차세대 방범창으로 안전한 생활공간을 구축</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image service-silicone">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">전문 실리콘</h3>
+                        <p class="service-description">내후성과 접착력이 뛰어난 고품질 실리콘으로 완벽한 밀폐와 오랜 내구성을 보장</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>문의하기</h2>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div class="contact-text">
+                            <div class="contact-label">가게 위치</div>
+                            <div class="contact-value">
+                                <a href="https://map.naver.com/p/search/%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%83%81%EB%B0%A91%EA%B8%B8%2043/address/14401116.3215149,4243421.8707915,%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%83%81%EB%B0%A91%EA%B8%B8%2043,new?c=18.22,0,0,0,dh&isCorrectAnswer=true" target="_blank" class="address-link">울산광역시 북구 상방1길 43</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div class="contact-text">
+                            <div class="contact-label">전화번호</div>
+                            <div class="contact-value">
+                                <a href="tel:010-3558-0045" class="phone-number">010-3558-0045</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-container">
+                    <a href="tel:010-3558-0045" class="cta-button">
+                        <span class="cta-icon">📞</span>
+                        무료 상담 신청
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 ELITE WINDOWS. Excellence in Every Detail.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 추가 파티클 효과
+        function createRandomParticles() {
+            const container = document.querySelector('.floating-particles');
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = '0s';
+                container.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 15000);
+            }, 3000);
+        }
+
+        createRandomParticles();
+
+        // 서비스 카드 마우스 효과
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `translateY(-15px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
