@@ -129,9 +129,12 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
             margin-bottom: 80px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .service-card {
@@ -157,9 +160,19 @@
         .service-image {
             width: 100%;
             height: 60%;
-            background-size: cover;
-            background-position: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
 
         .service-overlay {
@@ -169,6 +182,7 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 2;
         }
 
         .service-content {
@@ -177,6 +191,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            z-index: 3;
         }
 
         .service-title {
@@ -192,25 +208,9 @@
             line-height: 1.6;
         }
 
-        /* AI 생성 스타일 이미지 배경 */
         .service-sash {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="50" y="50" width="300" height="200" fill="%23ffffff" stroke="%23dee2e6" stroke-width="3"/><rect x="70" y="70" width="260" height="160" fill="%23e9ecef"/><path d="M180 70 L220 70 L220 230 L180 230 Z" fill="%23adb5bd"/><path d="M70 140 L330 140 L330 160 L70 160 Z" fill="%23adb5bd"/></svg>') center/cover;
-        }
-
-        .service-glass {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%23bbdefb;stop-opacity:0.9" /></linearGradient></defs><rect width="400" height="300" fill="%23f8f9fa"/><rect x="50" y="50" width="300" height="200" fill="url(%23glass)" stroke="%23546e7a" stroke-width="2"/><circle cx="120" cy="120" r="30" fill="%23ffffff" opacity="0.6"/><circle cx="280" cy="180" r="20" fill="%23ffffff" opacity="0.4"/></svg>') center/cover;
-        }
-
-        .service-screen {
-            background: linear-gradient(135deg, #00b894 0%, #00a085 100%), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="30" y="30" width="340" height="240" fill="%23263238" stroke="%23546e7a" stroke-width="2"/><pattern id="mesh" patternUnits="userSpaceOnUse" width="20" height="20"><rect width="20" height="20" fill="%23263238"/><rect width="18" height="18" x="1" y="1" fill="%23455a64" opacity="0.3"/></pattern><rect x="35" y="35" width="330" height="230" fill="url(%23mesh)"/></svg>') center/cover;
-        }
-
-        .service-security {
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8f9fa"/><rect x="40" y="40" width="320" height="220" fill="%23263238" stroke="%23546e7a" stroke-width="3"/><g stroke="%23fd79a8" stroke-width="4" fill="none"><line x1="60" y1="60" x2="380" y2="60"/><line x1="60" y1="90" x2="380" y2="90"/><line x1="60" y1="120" x2="380" y2="120"/><line x1="60" y1="150" x2="380" y2="150"/><line x1="60" y1="180" x2="380" y2="180"/><line x1="60" y1="210" x2="380" y2="210"/><line x1="60" y1="240" x2="380" y2="240"/></g></svg>') center/cover;
         }
 
         .service-silicone {
@@ -223,11 +223,12 @@
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 60px;
-            margin: 80px 0;
+            margin: 80px auto;
             border: 1px solid rgba(255, 255, 255, 0.5);
             position: relative;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(74, 144, 226, 0.1);
+            max-width: 1100px;
         }
 
         .contact-section::before {
@@ -251,7 +252,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            align-items: center;
+            align-items: start;
         }
 
         .contact-info h2 {
@@ -262,6 +263,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .cta-side {
+            margin-top: 125px;
         }
 
         .contact-item {
@@ -318,21 +323,84 @@
             text-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
         }
 
-        .address-link {
-            color: #4a90e2;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid transparent;
+        .price-highlight {
+            color: #e74c3c !important;
+            font-weight: 800 !important;
+            font-size: 1.5rem !important;
         }
 
-        .address-link:hover {
-            color: #2c5aa0;
-            text-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
-            border-bottom-color: #4a90e2;
+        .cta-side {
+            display: flex;
+            flex-direction: column;
+            margin-top: 110px;
         }
 
-        .cta-container {
+        .promotion-box {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(123, 104, 238, 0.1) 100%);
+            border: 2px solid rgba(74, 144, 226, 0.2);
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            height: 245px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .promotion-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4a90e2, #7b68ee, #4a90e2);
+            border-radius: 20px;
+            z-index: -1;
+            animation: border-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes border-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .promotion-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            background: linear-gradient(45deg, #4a90e2, #7b68ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .promotion-text {
+            font-size: 1rem;
+            color: rgba(44, 62, 80, 0.8);
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .promotion-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            animation: pulse-highlight 2s ease-in-out infinite;
+            margin-top: 60px;
+        }
+
+        @keyframes pulse-highlight {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .cta-button {
@@ -350,6 +418,9 @@
             box-shadow: 0 15px 35px rgba(74, 144, 226, 0.3);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            justify-content: center;
+            height: 105px;
         }
 
         .cta-button::before {
@@ -397,19 +468,35 @@
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
             }
             
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                align-items: center;
             }
             
             .contact-section {
                 padding: 40px 30px;
+                max-width: none;
+                margin: 80px 0;
             }
             
             .service-card {
                 height: 350px;
+            }
+
+            .promotion-box {
+                height: auto;
+                margin-bottom: 30px;
+            }
+
+            .cta-button {
+                height: auto;
+                padding: 20px 40px;
             }
         }
 
@@ -449,7 +536,7 @@
     <div class="container">
         <header>
             <div class="logo-container">
-                <h1 class="logo">ELITE WINDOWS</h1>
+                <h1 class="logo">ELITE SILICON</h1>
             </div>
             <p class="tagline">PREMIUM CRAFTSMANSHIP</p>
             <p class="subtitle">Where Innovation Meets Perfection</p>
@@ -460,50 +547,22 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-image service-sash">
+                        <img src="https://static.cdn.soomgo.com/upload/service/4b6ca392-f6f3-42a3-9507-cb1372fe00e8.jpg?webp=1" alt="하이 샷시">
                         <div class="service-overlay"></div>
                     </div>
                     <div class="service-content">
-                        <h3 class="service-title">프리미엄 샷시</h3>
-                        <p class="service-description">최고급 알루미늄과 PVC 소재로 제작된 내구성과 단열성을 겸비한 프리미엄 샷시 솔루션</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-image service-glass">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">특수 유리</h3>
-                        <p class="service-description">단열, 방음, 안전유리 등 다양한 기능성 유리로 완벽한 주거환경을 제공합니다</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-image service-screen">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">고급 방충망</h3>
-                        <p class="service-description">미세한 메쉬와 견고한 프레임으로 벌레 차단과 통풍을 동시에 해결하는 스마트 방충망</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-image service-security">
-                        <div class="service-overlay"></div>
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">보안 방범창</h3>
-                        <p class="service-description">강화된 보안성과 세련된 디자인을 겸비한 차세대 방범창으로 안전한 생활공간을 구축</p>
+                        <h3 class="service-title">하이 샷시</h3>
+                        <p class="service-description">내구성과 단열성을 겸비한 프리미엄 하이 샷시</p>
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-image service-silicone">
+                        <img src="https://octapi.lxzin.com/imageBlockProp/image/202203/07/720/0/1b25ae69-021a-4b1e-af77-46456ba01036.jpg" alt="실리콘 코킹">
                         <div class="service-overlay"></div>
                     </div>
                     <div class="service-content">
-                        <h3 class="service-title">전문 실리콘</h3>
+                        <h3 class="service-title">실리콘 코킹 전문</h3>
                         <p class="service-description">내후성과 접착력이 뛰어난 고품질 실리콘으로 완벽한 밀폐와 오랜 내구성을 보장</p>
                     </div>
                 </div>
@@ -515,12 +574,10 @@
                 <div class="contact-info">
                     <h2>문의하기</h2>
                     <div class="contact-item">
-                        <span class="contact-icon">📍</span>
+                        <span class="contact-icon">👷</span>
                         <div class="contact-text">
-                            <div class="contact-label">가게 위치</div>
-                            <div class="contact-value">
-                                <a href="https://map.naver.com/p/search/%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%83%81%EB%B0%A91%EA%B8%B8%2043/address/14401116.3215149,4243421.8707915,%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%83%81%EB%B0%A91%EA%B8%B8%2043,new?c=18.22,0,0,0,dh&isCorrectAnswer=true" target="_blank" class="address-link">울산광역시 북구 상방1길 43</a>
-                            </div>
+                            <div class="contact-label">성함</div>
+                            <div class="contact-value">이 춘 식</div>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -532,9 +589,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">💰</span>
+                        <div class="contact-text">
+                            <div class="contact-label">요금 안내</div>
+                            <div class="contact-value price-highlight">건당 30만원</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="cta-container">
+                <div class="cta-side">
+                    <div class="promotion-box">
+                        <h3 class="promotion-title">전문가의 확실한 시공</h3>
+                        <p class="promotion-text">
+                            30년 경력의 전문 기술자가 직접 시공합니다.<br>
+                        </p>
+                        <span class="promotion-highlight">✨ 무료 현장 견적 ✨</span>
+                    </div>
+                    
                     <a href="tel:010-3558-0045" class="cta-button">
                         <span class="cta-icon">📞</span>
                         무료 상담 신청
@@ -549,7 +621,6 @@
     </div>
 
     <script>
-        // 추가 파티클 효과
         function createRandomParticles() {
             const container = document.querySelector('.floating-particles');
             setInterval(() => {
@@ -568,7 +639,6 @@
 
         createRandomParticles();
 
-        // 서비스 카드 마우스 효과
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
